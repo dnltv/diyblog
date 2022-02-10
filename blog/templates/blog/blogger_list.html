@@ -1,22 +1,23 @@
 {% extends 'base_generic.html' %}
 
 {% block title %}
-  <title>Bloggers List</title>
+    <title>Blogger List</title>
 {% endblock %}
 
 {% block content %}
-  <h1>Bloggers List</h1>
+    <h1>Blogger List</h1>
 
-  {% if blogger_list %}
-  <ul>
-    {% for blogger in blogger_list %}
-    <li>
-      <a href="{% blogger.get_absolute_url%}">
-        {{ blogger }} ({{ blogger.date_of_birth }})
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
-  {% else %}
-    <p>There are no bloggers available.</p>
+    {% if blogger_list %}
+    <ul>
+        {% for blogger in blogger_list %}
+        <li>
+            <a href="{{ blogger.id }}">
+                {{ blogger }} ({{ blogger.date_of_birth }})
+                </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p>There are no bloggers available.</p>
+    {% endif %}
 {% endblock %}
