@@ -16,7 +16,7 @@ class Blogger(models.Model):
         """
         Returns url to access a particular blogger instance
         """
-        return reverse('blogger-detail', args=[str(self.id)])
+        return reverse('blog:blogger-detail', args=[str(self.id)])
 
     def __str__(self):
         return f'{self.last_name}, {self.first_name}'

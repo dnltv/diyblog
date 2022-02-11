@@ -11,7 +11,7 @@
     <ul>
         {% for blogger in blogger_list %}
         <li>
-            <a href="{{ blogger.id }}">
+            <a href="{{ blogger.get_absolute_url }}">
                 {{ blogger }} ({{ blogger.date_of_birth }})
                 </a>
         </li>
