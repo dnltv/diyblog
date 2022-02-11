@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView, UpdateView, DeleteView
-from .models import Blogger
+from .models import Blogger, Blog
 
 
 # Create your views here.
@@ -22,4 +22,13 @@ class BloggerDetailView(DetailView):
 
 class BloggerListView(ListView):
     model = Blogger
-    paginate_by = 20
+    paginate_by = 10
+
+
+class BlogDetailView(DetailView):
+    model = Blog
+
+
+class BlogListView(ListView):
+    model = Blog
+    paginate_by = 10

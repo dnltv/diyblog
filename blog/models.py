@@ -25,7 +25,22 @@ class Blogger(models.Model):
         ordering = ['last_name']
 
 
-#class Blog(models.Model):
-    #"""
-    #Model representating a Blog
-    #"""
+class Blog(models.Model):
+    """
+    Model representating a Blog
+    """
+    blogger = models.ForeignKey(Blogger, on_delete=models.CASCADE)
+    text = models.TextField(max_length=1000)
+    pub_date = models.DateTimeField()
+
+    def get_absolute_url(self):
+        """
+        Returns url to access a particular blog instance.
+        """
+        return reverse('blog:blog-detail', args=[str(self.id)])
+
+    def __str__(self):
+        return f'{self.id} {self.pub_date}'
+
+    class Meta:
+        ordering = ['pub_date']
