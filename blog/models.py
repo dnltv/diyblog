@@ -40,7 +40,7 @@ class Blog(models.Model):
         return reverse('blog:blog-detail', args=[str(self.id)])
 
     def __str__(self):
-        return f'{self.id} {self.pub_date}'
+        return f'{self.text} {self.pub_date}'
 
     class Meta:
         ordering = ['pub_date']
