@@ -41,7 +41,23 @@ class Blog(models.Model):
         return reverse('blog:blog-detail', args=[str(self.id)])
 
     def __str__(self):
-        return f'{self.title} {self.pub_date}'
+        return f'{self.title}'
+
+    class Meta:
+        ordering = ['pub_date']
+
+
+class Comment(models.Model):
+    """
+    Model representating a Comment.
+    """
+    blogger = models.ForeignKey(Blogger, on_delete=models.CASCADE)
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
+    text = models.TextField(max_length=1000)
+    pub_date = models.DateTimeField()
+
+    def __str__(self):
+        return self.text
 
     class Meta:
         ordering = ['pub_date']

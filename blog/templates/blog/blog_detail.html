@@ -1,16 +1,31 @@
 {% extends 'base_generic.html' %}
 
 {% block title %}
-    <title>Blog Detail</title>
+    <title>{{ blog.title }}</title>
 {% endblock%}
 
 {% block content %}
-    <h1>Blog: {{ blog.blogger.last_name }} {{ blog.blogger.first_name }}</h1>
+    <h1>Blog: {{ blog.title }}</h1>
+    <p><a href="{{ blog.blogger.get_absolute_url }}">{{ blog.blogger.last_name }} {{blog.blogger.first_name}}</a></p>
     <p><strong>Text:</strong> {{ blog.text }}</p>
     <br>
     <p><strong>Published:</strong> {{ blog.pub_date }}</p>
 
     <div class="margin-left:20px;margin-top:20px">
-        <h3></h3>
+        <h3>Comments</h3>
+        {% if blog.comment_set.all %}
+            <ul>
+                {% for comment in blog.comment_set.all %}
+                <li>
+                    <a href="{{ comment.blogger.get_absolute_url }}">{{ comment.blogger }}</a>
+                    <p>{{ comment.text }}</p>
+                    {{ comment.pub_date }}
+                </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+        <p>There are no comments.</p>
+        {% endif %}
+
     </div>
 {% endblock %}

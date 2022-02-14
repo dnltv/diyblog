@@ -7,10 +7,21 @@
 {% block content %}
     <h1>Blogger: {{ blogger.last_name }} {{ blogger.first_name }}</h1>
     <p><strong>Date of birth:</strong> {{ blogger.date_of_birth }}</p>
-    <br>
     <p><strong>About:</strong> {{ blogger.description }}</p>
 
     <div class="margin-left:20px;margin-top:20px">
         <h3>Blogs</h3>
+        {% if blogger.blog_set.all %}
+        <ul>
+            {% for blog in blogger.blog_set.all %}
+            <li><strong>Title: </strong><a href="{{ blog.get_absolute_url }}">{{ blog.title }}</a>
+                <p>{{ blog.text }}</p>
+                <p>{{ blog.pub_date }}</p>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+            <p>The user does not have any blogs so far.</p>
+        {% endif %}
     </div>
 {% endblock %}
