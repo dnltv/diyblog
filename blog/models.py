@@ -29,6 +29,7 @@ class Blog(models.Model):
     """
     Model representating a Blog
     """
+    title = models.CharField(max_length=100, default='Untitled')
     blogger = models.ForeignKey(Blogger, on_delete=models.CASCADE)
     text = models.TextField(max_length=1000)
     pub_date = models.DateTimeField()
@@ -40,7 +41,7 @@ class Blog(models.Model):
         return reverse('blog:blog-detail', args=[str(self.id)])
 
     def __str__(self):
-        return f'{self.text} {self.pub_date}'
+        return f'{self.title} {self.pub_date}'
 
     class Meta:
         ordering = ['pub_date']

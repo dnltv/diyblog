@@ -5,20 +5,18 @@
 {% endblock%}
 
 {% block content %}
-<h1>Blogs List</h1>
+<h1>Blogs</h1>
 
     {% if blog_list %}
     <ul>
         {% for blog in blog_list %}
         <li>
-            <p>{{ blog.blogger }}</p>
-            <hr>
-            <a href="{{ blog.get_absolute_url }}">
-                {{ blog.text }}
-                </a>
+            <h4><a href="{{ blog.get_absolute_url}}">{{ blog.title }}</a></h4>
+            <br>
+            <p>{{ blog.text }}</p>
+            <p>{{ blog.pub_date }}</p>
+            <strong>Author: </strong><a href="{{ blog.blogger.get_absolute_url }}">{{ blog.blogger }}</a>
         </li>
-        <br>
-        <p>{{ blog.pub_date }}</p>
         {% endfor %}
     </ul>
     {% else %}
