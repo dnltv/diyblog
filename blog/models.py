@@ -9,6 +9,7 @@ class Blogger(models.Model):
     """
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
+    nickname = models.CharField(max_length=100, default=first_name)
     date_of_birth = models.DateField(null=True, blank=True)
     description = models.TextField(max_length=500)
 
