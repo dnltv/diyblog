@@ -6,4 +6,10 @@
 
 {% block content %}
     {{ text }}
+    <h4>Some stats: </h4>
+    <ul>
+        <li>Number of bloggers: {{ num_of_bloggers }}</li>
+        <li>Number of blogs: {{ num_of_blogs }}</li>
+        <li>Number of comments: {{ num_of_comments }}</li>
+    </ul>
 {% endblock %}
