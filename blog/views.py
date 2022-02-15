@@ -9,6 +9,9 @@ def index(request):
     Index page view function.
     """
     text = "That's my new project index page!"
+    #num_of_bloggers = Blogger.objects
+    #num_of_blogs =
+    #num_of_comments =
     return render(request,
                   'index.html',
                   context={

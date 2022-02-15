@@ -1,11 +1,12 @@
 {% extends 'base_generic.html' %}
 
 {% block title %}
-    <title>{{ blogger.last_name }} {{ blogger.first_name }}</title>
+    <title>{{ blogger.nickname }}</title>
 {% endblock %}
 
 {% block content %}
     <h1>Blogger: {{ blogger.last_name }} {{ blogger.first_name }}</h1>
+    <p><strong>Nickname: </strong>{{ blogger.nickname }}</p>
     <p><strong>Date of birth:</strong> {{ blogger.date_of_birth }}</p>
     <p><strong>About:</strong> {{ blogger.description }}</p>
 

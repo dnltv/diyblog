@@ -8,8 +8,8 @@ class BlogInline(admin.TabularInline):
 
 @admin.register(Blogger)
 class BloggerAdmin(admin.ModelAdmin):
-    list_display = ['last_name', 'first_name', 'date_of_birth']
-    list_filter = ['last_name', 'date_of_birth']
+    list_display = ['nickname', 'last_name', 'first_name', 'date_of_birth']
+    list_filter = ['nickname', 'last_name', 'date_of_birth']
     inlines = [BlogInline]
 
 

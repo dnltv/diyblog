@@ -6,7 +6,7 @@
 
 {% block content %}
     <h1>Blog: {{ blog.title }}</h1>
-    <p><a href="{{ blog.blogger.get_absolute_url }}">{{ blog.blogger.last_name }} {{blog.blogger.first_name}}</a></p>
+    <p><a href="{{ blog.blogger.get_absolute_url }}">{{ blogger.nickname }}{{ blog.blogger.last_name }} {{blog.blogger.first_name}}</a></p>
     <p><strong>Text:</strong> {{ blog.text }}</p>
     <br>
     <p><strong>Published:</strong> {{ blog.pub_date }}</p>
@@ -17,7 +17,7 @@
             <ul>
                 {% for comment in blog.comment_set.all %}
                 <li>
-                    <a href="{{ comment.blogger.get_absolute_url }}">{{ comment.blogger }}</a>
+                    <a href="{{ comment.blogger.get_absolute_url }}">{{ comment.blogger.nickname }}</a>
                     <p>{{ comment.text }}</p>
                     {{ comment.pub_date }}
                 </li>
