@@ -11,11 +11,7 @@
     <ul>
         {% for blog in blog_list %}
         <li>
-            <h4><a href="{{ blog.get_absolute_url}}">{{ blog.title }}</a></h4>
-            <br>
-            <p>{{ blog.text }}</p>
-            <p>{{ blog.pub_date }}</p>
-            <strong>Author: </strong><a href="{{ blog.blogger.get_absolute_url }}">{{ blog.blogger }}</a>
+            <a href="{{ blog.get_absolute_url}}">{{ blog.title }}</a> ({{ blog.pub_date }}) - <a href="{{ blog.blogger.get_absolute_url }}">{{ blog.blogger }}</a>
         </li>
         {% endfor %}
     </ul>
