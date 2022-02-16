@@ -38,3 +38,12 @@ class BlogDetailView(DetailView):
 class BlogListView(ListView):
     model = Blog
     paginate_by = 10
+
+
+class CommentDetailView(DetailView):
+    model = Comment
+
+
+class CommentListView(ListView):
+    model = Comment
+    paginate_by = 10

@@ -45,7 +45,7 @@ class Blog(models.Model):
         return f'{self.title}'
 
     class Meta:
-        ordering = ['pub_date']
+        ordering = ['-pub_date']
 
 
 class Comment(models.Model):
@@ -56,6 +56,12 @@ class Comment(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     text = models.TextField(max_length=1000)
     pub_date = models.DateTimeField()
+
+    def get_absolute_url(self):
+        """
+        Reverse to accept a particular instance of comment.
+        """
+        return reverse('blog:comment-detail', args=[str(self.blog)])
 
     def __str__(self):
         return self.text
