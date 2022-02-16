@@ -27,11 +27,11 @@
     </div>
     <div class="margin-left:20px;margin-top:20px">
         <h3>Comments</h3>
-        {% if blogger.blog.comment_set.all %}
+        {% if blogger.comment_set.all %}
         <ul>
-            {% for comment in blogger.blog.comment_set.all %}
-            <li><strong>Title: </strong><a href="{{ comment.get_absolute_url }}">{{ comment.title }}</a>
-                <!-- <p>{{ comment.text }}</p> -->
+            {% for comment in blogger.comment_set.all %}
+            <li><strong>Blog: </strong><a href="{{ comment.blog.get_absolute_url }}">{{ comment.blog.title }}</a>
+                <p>{{ comment.text }}</p>
                 <p>{{ comment.pub_date }}</p>
             </li>
             {% endfor %}

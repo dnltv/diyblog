@@ -5,5 +5,21 @@
 {% endblock %}
 
 {% block content %}
-    <h3> {{ comment }} </h3>
+    {% if comment_list %}
+
+        <h2>Comments</h2>
+
+        <ul>
+        {% for comment in comment_list %}
+            <li><a href="{{ comment.blogger.get_absolute_url }}">{{ comment.blogger }}</a>
+                <p><strong>Blog: </strong><a href="{{ comment.blog.get_absolute_url }}">{{ comment.blog }}</a></p>
+                <p>{{ comment.text }}</p>
+                {{ comment.pub_date }}
+                <hr>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+    <p>There are no comments so far.</p>
+    {% endif %}
 {% endblock %}

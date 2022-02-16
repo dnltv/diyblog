@@ -61,10 +61,13 @@ class Comment(models.Model):
         """
         Reverse to accept a particular instance of comment.
         """
-        return reverse('blog:comment-detail', args=[str(self.blog)])
+        return reverse('blog:comment-detail', args=[str(self.id)])
 
     def __str__(self):
         return self.text
 
     class Meta:
         ordering = ['pub_date']
+
+
+
