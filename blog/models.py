@@ -1,4 +1,6 @@
+from datetime import datetime
 from django.db import models
+#from django.contrib.auth import User
 from django.urls import reverse
 
 
@@ -7,11 +9,11 @@ class Blogger(models.Model):
     """
     Model representating a blogger.
     """
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
-    nickname = models.CharField(max_length=100, default=first_name)
+    first_name = models.CharField(max_length=100, help_text='Enter your name')
+    last_name = models.CharField(max_length=100, help_text='Enter your last name', null=True, blank=True)
+    nickname = models.CharField(max_length=100, help_text='Enter your nickname',)
     date_of_birth = models.DateField(null=True, blank=True)
-    description = models.TextField(max_length=500)
+    description = models.TextField(max_length=500, help_text="Tell something about yourself")
 
     def get_absolute_url(self):
         """
@@ -30,10 +32,10 @@ class Blog(models.Model):
     """
     Model representating a Blog
     """
-    title = models.CharField(max_length=100, default='Untitled')
+    title = models.CharField(max_length=100, help_text='Enter the title of the blog', default='Untitled')
     blogger = models.ForeignKey(Blogger, on_delete=models.CASCADE)
-    text = models.TextField(max_length=1000)
-    pub_date = models.DateTimeField()
+    text = models.TextField(max_length=1000, help_text='Enter some text')
+    pub_date = models.DateTimeField(datetime.now())
 
     def get_absolute_url(self):
         """
@@ -46,6 +48,7 @@ class Blog(models.Model):
 
     class Meta:
         ordering = ['-pub_date']
+        #permissions = (('can_post_blog', 'Post a blog'))
 
 
 class Comment(models.Model):
@@ -54,8 +57,8 @@ class Comment(models.Model):
     """
     blogger = models.ForeignKey(Blogger, on_delete=models.CASCADE)
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
-    text = models.TextField(max_length=1000)
-    pub_date = models.DateTimeField()
+    text = models.TextField(max_length=1000, help_text='Add a comment')
+    pub_date = models.DateTimeField(datetime.now())
 
     def get_absolute_url(self):
         """
