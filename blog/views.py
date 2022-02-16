@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, ListView, UpdateView, DeleteView
 from .models import Blogger, Blog, Comment
 
@@ -47,3 +48,12 @@ class CommentDetailView(DetailView):
 class CommentListView(ListView):
     model = Comment
     paginate_by = 10
+
+
+#class CommentUpdate(LoginRequiredMixin, UpdateView):
+    #model = Comment
+    #form = ComemntForm
+    #login_url = '/login/'
+    #redirect_field_name = 'redirect_to'
+    #template_name =
+    #context_name =

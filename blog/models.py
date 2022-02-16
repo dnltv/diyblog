@@ -35,7 +35,7 @@ class Blog(models.Model):
     title = models.CharField(max_length=100, help_text='Enter the title of the blog', default='Untitled')
     blogger = models.ForeignKey(Blogger, on_delete=models.CASCADE)
     text = models.TextField(max_length=1000, help_text='Enter some text')
-    pub_date = models.DateTimeField(datetime.now())
+    pub_date = models.DateTimeField(default=datetime.now())
 
     def get_absolute_url(self):
         """
@@ -48,7 +48,7 @@ class Blog(models.Model):
 
     class Meta:
         ordering = ['-pub_date']
-        #permissions = (('can_post_blog', 'Post a blog'))
+        permissions = (('can_post_blog', 'Post a blog'), ('can_delete_blog', 'Delete a blog'),)
 
 
 class Comment(models.Model):
@@ -58,7 +58,7 @@ class Comment(models.Model):
     blogger = models.ForeignKey(Blogger, on_delete=models.CASCADE)
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     text = models.TextField(max_length=1000, help_text='Add a comment')
-    pub_date = models.DateTimeField(datetime.now())
+    pub_date = models.DateTimeField(default=datetime.now())
 
     def get_absolute_url(self):
         """
