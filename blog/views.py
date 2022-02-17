@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import DetailView, ListView, UpdateView, DeleteView
 from .models import Blogger, Blog, Comment
 
@@ -57,3 +57,8 @@ class CommentListView(ListView):
     #redirect_field_name = 'redirect_to'
     #template_name =
     #context_name =
+
+
+#class smth(PermissionRequiredMixin, smthView):
+    #permission_required = 'blog.can_post_blog'
+    #permission_required = ('can_post_blog', 'Post a blog')
