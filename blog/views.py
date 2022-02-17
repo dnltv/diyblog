@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.views.generic import DetailView, ListView, UpdateView, DeleteView
+from django.views.generic import DetailView, ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from .models import Blogger, Blog, Comment
 
 
@@ -50,15 +52,48 @@ class CommentListView(ListView):
     paginate_by = 10
 
 
-#class CommentUpdate(LoginRequiredMixin, UpdateView):
-    #model = Comment
-    #form = ComemntForm
-    #login_url = '/login/'
-    #redirect_field_name = 'redirect_to'
-    #template_name =
-    #context_name =
+class BloggerCreate(CreateView):
+    model = Blogger
+    fields = '__all__'
 
 
-#class smth(PermissionRequiredMixin, smthView):
-    #permission_required = 'blog.can_post_blog'
-    #permission_required = ('can_post_blog', 'Post a blog')
+class BloggerUpdate(UpdateView):
+    model = Blogger
+    fields = ['first_name', 'last_name', 'nickname', 'date_of_birth', 'description']
+
+
+class BloggerDelete(DeleteView):
+    model = Blogger
+    success_url = reverse_lazy('blog:bloggers')
+
+
+class BlogCreate(CreateView):
+    model = Blog
+    fields = '__all__'
+
+
+class BlogUpdate(UpdateView):
+    model = Blog
+    fields = ['title', 'text']
+
+
+class BlogDelete(DeleteView):
+    model = Blog
+    success_url = reverse_lazy('blog:blogs')
+
+
+class CommentCreate(CreateView):
+    model = Comment
+    fields = '__all__'
+
+
+class CommentUpdate(UpdateView):
+    model = Comment
+    fields = ['text']
+
+
+class CommentDelete(DeleteView):
+    model = Comment
+    success_url = reverse_lazy('blog:comments')
+
+

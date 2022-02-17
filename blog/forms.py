@@ -1,11 +1,9 @@
-from django import forms
-from django.core.exceptions import *
-from django.utils.translation import gettext_lazy as _
-import datetime
+from django.forms import ModelForm
+from .models import *
 
 
-class BlogForm(forms.Form):
+class BlogForm(ModelForm):
 
-    title = forms.CharField(help_text="Enter a title of blog.")
-    text = forms.CharField(help_text='Enter a text.')
-
+    class Meta:
+        model = Blog
+        fields = '__all__'
