@@ -1,7 +1,9 @@
 from datetime import datetime
 from django.db import models
-#from django.contrib.auth import User
 from django.urls import reverse
+from django.conf import settings
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
+from django.contrib.contenttypes.models import ContentType
 
 
 # Create your models here.
@@ -28,6 +30,18 @@ class Blogger(models.Model):
         ordering = ['last_name']
 
 
+class Like(models.Model):
+    """
+    Model representating a Like.
+    """
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             related_name='likes',
+                             on_delete=models.CASCADE)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey('content_type', 'object_id')
+
+
 class Blog(models.Model):
     """
     Model representating a Blog
@@ -36,6 +50,7 @@ class Blog(models.Model):
     blogger = models.ForeignKey(Blogger, on_delete=models.CASCADE)
     text = models.TextField(max_length=1000, help_text='Enter some text')
     pub_date = models.DateTimeField(default=datetime.now())
+    likes = GenericRelation(Like)
 
     def get_absolute_url(self):
         """
@@ -45,6 +60,10 @@ class Blog(models.Model):
 
     def __str__(self):
         return f'{self.title}'
+
+    @property
+    def total_likes(self):
+        return self.likes.count()
 
     class Meta:
         ordering = ['-pub_date']
@@ -71,6 +90,11 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ['pub_date']
+
+
+
+
+
 
 
 
