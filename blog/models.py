@@ -78,6 +78,7 @@ class Comment(models.Model):
     blog = models.ForeignKey(Blog, on_delete=models.CASCADE)
     text = models.TextField(max_length=1000, help_text='Add a comment')
     pub_date = models.DateTimeField(default=datetime.now())
+    likes = GenericRelation(Like)
 
     def get_absolute_url(self):
         """
@@ -88,13 +89,11 @@ class Comment(models.Model):
     def __str__(self):
         return self.text
 
+    @property
+    def total_likes(self):
+        return self.likes.count()
+
     class Meta:
         ordering = ['pub_date']
-
-
-
-
-
-
 
 
