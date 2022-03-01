@@ -14,7 +14,8 @@
             <li><a href="{{ comment.blogger.get_absolute_url }}">{{ comment.blogger }}</a>
                 <p><strong>Blog: </strong><a href="{{ comment.blog.get_absolute_url }}">{{ comment.blog }}</a></p>
                 <p>{{ comment.text }}</p>
-                {{ comment.pub_date }}
+                <p>{{ comment.pub_date }}</p>
+                <p><strong>Likes: </strong>{{ comment.total_likes }} <button type="submit" name="like">like</button><button>dislike</button></p>
                 <hr>
             </li>
         {% endfor %}
