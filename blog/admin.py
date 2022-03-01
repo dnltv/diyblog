@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Blogger, Blog, Comment
+
+from .models import Blog, Blogger, Comment
+
 
 # Register your models here.
 class BlogInline(admin.TabularInline):
