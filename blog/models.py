@@ -11,7 +11,7 @@ from django.urls import reverse
 # Create your models here.
 class Blogger(models.Model):
     """
-    Model representating a blogger.
+    Model representating a Blogger.
     """
     first_name = models.CharField(max_length=100, help_text='Enter your name')
     last_name = models.CharField(max_length=100, help_text='Enter your last name', null=True, blank=True)
@@ -46,7 +46,7 @@ class Like(models.Model):
 
 class Blog(models.Model):
     """
-    Model representating a Blog
+    Model representating a Blog.
     """
     title = models.CharField(max_length=100, help_text='Enter the title of the blog', default='Untitled')
     blogger = models.ForeignKey(Blogger, on_delete=models.CASCADE)
