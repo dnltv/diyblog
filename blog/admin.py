@@ -25,7 +25,6 @@ class BlogAdmin(admin.ModelAdmin):
     list_filter = ['title', 'blogger', 'pub_date']
     inlines = [CommentInline]
 
-
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     list_display = ['blog', 'blogger', 'pub_date']
