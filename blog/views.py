@@ -69,7 +69,7 @@ class BloggerDelete(DeleteView):
     success_url = reverse_lazy('blog:bloggers')
 
 
-class BlogCreate(CreateView):
+class BlogCreate(CreateView, LoginRequiredMixin):
     model = Blog
     fields = '__all__'
 
