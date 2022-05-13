@@ -84,7 +84,7 @@ class BlogDelete(DeleteView):
     success_url = reverse_lazy('blog:blogs')
 
 
-class CommentCreate(CreateView):
+class CommentCreate(CreateView, LoginRequiredMixin):
     model = Comment
     fields = '__all__'
 

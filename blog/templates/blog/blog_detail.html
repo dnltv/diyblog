@@ -30,8 +30,11 @@
         <p>There are no comments.</p>
         {% endif %}
 
-        <h3>Create Blog</h3>
-        <a href="{% url 'blog:blog_create'%}">New Post</a>
+        <h5><a href="{% url 'blog:comment_create' %}">Add Comment</a></h5>
+
+
+        <h5><a href="{% url 'blog:blog_create'%}">New Post</a></h5>
+
 
     </div>
 {% endblock %}
